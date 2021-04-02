@@ -24,6 +24,7 @@ private:
 
     void rebuildRLP() override;
     spAccessList m_accessList;
+    string m_txDataString;
 };
 
 typedef GCP_SPointer<TransactionAccessList> spTransactionAccessList;

@@ -40,6 +40,7 @@ struct Transaction : GCP_SPointerBase
     virtual TransactionType type() const { return TransactionType::LEGACY; }
 
     BYTES const& getSignedRLP() const;
+    virtual string getTxDataString() const;
     dev::RLPStream const& asRLPStream() const;
     virtual DataObject const asDataObject(ExportOrder _order = ExportOrder::Default) const;
 

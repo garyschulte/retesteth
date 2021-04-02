@@ -291,7 +291,7 @@ DataObject FillTest(StateTestInFiller const& _test)
 
                     transactionResults["indexes"] = indexes;
                     transactionResults["hash"] = blockInfo.header().stateRoot().asString();
-                    transactionResults["txbytes"] = tr.transaction().getSignedRLP().asString();
+                    transactionResults["txbytes"] = tr.transaction().getTxDataString();
 
                     // Fill up the loghash (optional)
                     FH32 logHash(session.test_getLogHash(trHash));

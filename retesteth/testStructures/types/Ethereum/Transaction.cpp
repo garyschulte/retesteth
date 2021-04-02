@@ -153,6 +153,11 @@ BYTES const& Transaction::getSignedRLP() const
     return m_signedRLPdata.getCContent();
 }
 
+string getTxDataString() const
+{
+    return getSignedRLP().asString();
+}
+ 
 dev::RLPStream const& Transaction::asRLPStream() const
 {
     return m_outRlpStream;

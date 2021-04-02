@@ -124,6 +124,11 @@ DataObject const TransactionAccessList::asDataObject(ExportOrder _order) const
     return out;
 }
 
+string getTxDataString() const override
+{
+    return m_txDataString;
+}
+
 void TransactionAccessList::rebuildRLP()
 {
     // RLP(01 + tr.rlp)
@@ -142,6 +147,7 @@ void TransactionAccessList::rebuildRLP()
     // Encode bytearray into rlp
     wrapper << outa;
     m_outRlpStream = wrapper;
+    m_txDataString = dev::toHexPrefixed(outa);
     m_signedRLPdata = spBYTES(new BYTES(dev::toHexPrefixed(m_outRlpStream.out())));
     m_hash = spFH32(new FH32("0x" + dev::toString(dev::sha3(outa))));
 }

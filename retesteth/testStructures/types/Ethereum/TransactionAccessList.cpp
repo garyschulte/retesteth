@@ -124,7 +124,7 @@ DataObject const TransactionAccessList::asDataObject(ExportOrder _order) const
     return out;
 }
 
-string TransactionAccessList::getTxDataString() const override
+string TransactionAccessList::getTxDataString() const 
 {
     return m_txDataString;
 }

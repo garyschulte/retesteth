@@ -15,6 +15,7 @@ struct TransactionAccessList : Transaction
 
     DataObject const asDataObject(ExportOrder _order = ExportOrder::Default) const override;
     TransactionType type() const override { return TransactionType::ACCESSLIST; }
+    string getTxDataString() const;
 
 private:
     void fromRLP(dev::RLP const&) override;

@@ -406,7 +406,7 @@ void RunTest(StateTestInFilled const& _test)
                     spBYTES const& expectedBytesPtr = result.bytesPtr();
                     if (!expectedBytesPtr.isEmpty())
                     {
-                        if (tr.transaction().getSignedRLP().asString() != expectedBytesPtr.getCContent().asString())
+                        if (tr.transaction().getTxDataString != expectedBytesPtr.getCContent().asString())
                             ETH_ERROR_MESSAGE("TxBytes mismatch: test transaction section doest not match txbytes in post section!");
                     }
 

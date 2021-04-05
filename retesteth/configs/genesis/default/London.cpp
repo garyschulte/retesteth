@@ -35,7 +35,7 @@ genLondonCfg::genLondonCfg()
 {
     DataObject obj;
     obj["path"] = "besu/genesis/London.json";
-    obj["content"] = default_Berlin_config;
+    obj["content"] = default_London_config;
     map_configs.addArrayObject(obj);
 
     DataObject obj2;

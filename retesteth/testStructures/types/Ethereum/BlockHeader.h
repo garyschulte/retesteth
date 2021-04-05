@@ -10,7 +10,6 @@ namespace test
 {
 namespace teststruct
 {
-VALUE m_OptionalEmpty = VALUE(-1);
 // Ethereum blockheader description
 struct BlockHeader : GCP_SPointerBase
 {
@@ -85,6 +84,7 @@ private:
 
 typedef GCP_SPointer<BlockHeader> spBlockHeader;
 
+static VALUE m_OptionalEmpty = VALUE(-1);
 
 }  // namespace teststruct
 }  // namespace test

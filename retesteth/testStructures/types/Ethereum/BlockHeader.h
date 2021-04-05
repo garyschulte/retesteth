@@ -33,6 +33,12 @@ struct BlockHeader : GCP_SPointerBase
     VALUE const& difficulty() const { return m_difficulty.getCContent(); }
     VALUE const& gasLimit() const { return m_gasLimit.getCContent(); }
     VALUE const& gasUsed() const { return m_gasUsed.getCContent(); }
+    VALUE const& baseFee() const { 
+        if (!m_gasUsed.isEmpty){
+            return m_baseFee.getCContent();
+        }
+        return null;
+    }
     BYTES const& extraData() const { return m_extraData.getCContent(); }
     FH8 const& nonce() const { return m_nonce.getCContent(); }
     FH32 const& mixHash() const { return m_mixHash.getCContent(); }
@@ -51,6 +57,7 @@ struct BlockHeader : GCP_SPointerBase
     void setHeaderHash(FH32 const& _hash) { m_hash = spFH32(new FH32(_hash)); }
     void setGasUsed(VALUE const& _gasUsed) { m_gasUsed = spVALUE(new VALUE(_gasUsed)); }
     void setGasLimit(VALUE const& _gasLimit) { m_gasLimit = spVALUE(new VALUE(_gasLimit)); }
+    void setBaseFee(VALUE const& _baseFee) { m_baseFee = spVALUE(new VALUE(_baseFee)); }
     void recalculateHash();
 
 private:
@@ -61,6 +68,7 @@ private:
     spBYTES m_extraData;
     spVALUE m_gasLimit;
     spVALUE m_gasUsed;
+    spVALUE m_baseFee;
     spFH32 m_hash;
     spFH256 m_logsBloom;
     spFH32 m_mixHash;

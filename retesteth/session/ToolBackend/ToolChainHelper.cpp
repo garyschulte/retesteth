@@ -33,8 +33,14 @@ ToolParams::ToolParams(DataObject const& _data)
     else
         m_muirGlacierForkBlock = spVALUE(new VALUE(unreachable));
 
+    if (_data.count("eip1559ForkBlock"))
+        m_eip1559ForkBlock = spVALUE(new VALUE(_data.atKey("eip1559ForkBlock")));
+    else
+        m_eip1559ForkBlock = spVALUE(new VALUE(unreachable));
+
     requireJsonFields(_data, "ToolParams " + _data.getKey(),
         {{"fork", {{DataType::String}, jsonField::Required}},
+            {"eip1559ForkBlock", {{DataType::String}, jsonField::Optional}},
             {"muirGlacierForkBlock", {{DataType::String}, jsonField::Optional}},
             {"constantinopleForkBlock", {{DataType::String}, jsonField::Optional}},
             {"byzantiumForkBlock", {{DataType::String}, jsonField::Optional}},

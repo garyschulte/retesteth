@@ -25,6 +25,9 @@ void BlockHeader::fromData(DataObject const& _data)
         m_extraData = spBYTES(new BYTES(_data.atKey("extraData")));
         m_gasLimit = spVALUE(new VALUE(_data.atKey("gasLimit")));
         m_gasUsed = spVALUE(new VALUE(_data.atKey("gasUsed")));
+        if (_data.count("baseFee")){
+            m_baseFee = spVALUE(new VALUE(_data.atKey("baseFee")));
+        }
         if (_data.count("hash"))
             m_hash = spFH32(new FH32(_data.atKey("hash")));
         string const bkey = _data.count("logsBloom") ? "logsBloom" : "bloom";
@@ -139,6 +142,9 @@ const DataObject BlockHeader::asDataObject() const
     out["extraData"] = m_extraData.getCContent().asString();
     out["gasLimit"] = m_gasLimit.getCContent().asString();
     out["gasUsed"] = m_gasUsed.getCContent().asString();
+    if (!m_baseFee.isEmpty()) {
+        out["baseFee"] = m_baseFee.getCContent().asString();
+    }
     out["hash"] = m_hash.getCContent().asString();
     out["mixHash"] = m_mixHash.getCContent().asString();
     out["nonce"] = m_nonce.getCContent().asString();
@@ -168,6 +174,9 @@ const RLPStream BlockHeader::asRLPStream() const
     header << m_number.getCContent().asU256();
     header << m_gasLimit.getCContent().asU256();
     header << m_gasUsed.getCContent().asU256();
+    if (!m_baseFee.isEmpty()){
+        header << m_baseFee.getCContent().asU256();
+    }
     header << m_timestamp.getCContent().asU256();
     header << test::sfromHex(m_extraData.getCContent().asString());
     header << h256(m_mixHash.getCContent().asString());

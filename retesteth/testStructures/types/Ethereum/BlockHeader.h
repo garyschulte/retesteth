@@ -10,6 +10,7 @@ namespace test
 {
 namespace teststruct
 {
+VALUE m_OptionalEmpty = VALUE(-1);
 // Ethereum blockheader description
 struct BlockHeader : GCP_SPointerBase
 {
@@ -34,10 +35,10 @@ struct BlockHeader : GCP_SPointerBase
     VALUE const& gasLimit() const { return m_gasLimit.getCContent(); }
     VALUE const& gasUsed() const { return m_gasUsed.getCContent(); }
     VALUE const& baseFee() const { 
-        if (!m_gasUsed.isEmpty){
+        if (!m_baseFee.isEmpty()){
             return m_baseFee.getCContent();
         }
-        return null;
+        return &m_OptionalEmpty;  //todo: there should be a better way to return an optional field
     }
     BYTES const& extraData() const { return m_extraData.getCContent(); }
     FH8 const& nonce() const { return m_nonce.getCContent(); }

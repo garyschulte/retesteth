@@ -38,7 +38,7 @@ struct BlockHeader : GCP_SPointerBase
         if (!m_baseFee.isEmpty()){
             return m_baseFee.getCContent();
         }
-        return &m_OptionalEmpty;  //todo: there should be a better way to return an optional field
+        return m_OptionalEmpty;  //todo: there should be a better way to return an optional field
     }
     BYTES const& extraData() const { return m_extraData.getCContent(); }
     FH8 const& nonce() const { return m_nonce.getCContent(); }
